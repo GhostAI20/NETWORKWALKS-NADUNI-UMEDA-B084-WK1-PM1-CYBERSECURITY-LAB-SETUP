@@ -78,14 +78,32 @@ This is the most important step. This creates the private switch for my lab.
 * **DHCP:** Enabled
 * **IPv6:** Disabled
 
-### Step 4. Import Kali Linux
+### 4. Shared Folder & Clipboard Configuration (As per requirements)
+
+As per the lab requirement: Shared folders should be enabled with /downloads folder shared from host machine.
+
+**Configuration:**
+- **Host Path:** `C:\Users\rmnad\Downloads`
+- **Guest Mount:** `/downloads`
+- **Settings:** VirtualBox > Settings > Shared Folders > Add > Auto-mount enabled
+- **Verification:** Inside Kali, run `ls /downloads` and `df -h | grep downloads`
+
+**Clipboard & Drag/Drop:**
+- Settings > General > Advanced > Shared Clipboard: Bidirectional
+- Drag'n'Drop: Bidirectional
+- This allows easy file transfer between Host (Windows) and Kali VM.
+
+<img width="522" height="452" alt="Screenshot 2026-10-25 221536" src="https://github.com/user-attachments/assets/aad6cedd-770c-4769-8718-c597be25bc69" />
+<img width="1197" height="300" alt="Screenshot 2026-10-26 182243" src="https://github.com/user-attachments/assets/d34c286a-8426-4d88-9951-3ed37a4a043f" />
+
+### Step 5. Import Kali Linux
 1. Double-clicked the Kali `.vbox` file to import into VirtualBox.
 2. Settings > System > Motherboard > RAM: 2048 MB
 3. Settings > Network > Adapter 1 > Attached to: NAT Network, Name: NatNetwork
 4. Adapter Type: Intel PRO/1000 MT Desktop (default)
 5. Enabled Bidirectional Clipboard and Drag & Drop.
 
-### Step 5. Configure the Kali Linux Network
+### Step 6. Configure the Kali Linux Network
 This is where I set the static IP as per Sir's video.
 
 **My IP Config:**
@@ -110,7 +128,7 @@ sudo nmcli con down "Wired connection 1" && sudo nmcli con up "Wired connection 
 ip a
 ```
 
-### Step 6. Create a Clean VM Snapshot
+### Step 7. Create a Clean VM Snapshot
 After everything worked, I shut down Kali properly and took a clean snapshot.
 
 - VirtualBox > Select Kali VM > Snapshots > Take
@@ -129,6 +147,7 @@ After all steps, my lab is running. You can see sf_Downloads shared folder is wo
 | Gateway | 10.0.0.1 | - | VirtualBox Router |
 | Kali (Me) | 10.0.0.2 | 10.0.0.1 | Attacker Machine |
 | Future Targets | 10.0.0.3-99 | 10.0.0.1 | For vulnerable VMs |
+
 
 ## 🔎 Lab Verification
 I verified the lab after taking the snapshot.
